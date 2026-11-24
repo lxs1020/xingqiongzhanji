@@ -1,0 +1,59 @@
+// ============================================
+// 主题配色变量 —— 包裹管家（多平台快递聚合）
+// ============================================
+
+// 品牌主题色：清透蓝，传递「准时 / 可靠 / 科技」
+$color-primary: #2f6bff;
+$color-primary-light: #5b8cff;
+$color-primary-dark: #1d4fd8;
+$color-primary-soft: #eaf1ff;
+
+// 功能色
+$color-success: #00b42a;
+$color-warning: #ff7d00;
+$color-error: #f53f3f;
+$color-info: #2f6bff;
+
+// 背景色
+$color-bg-page: #f4f6fa;
+$color-bg-card: #ffffff;
+$color-bg-hover: #f2f3f5;
+
+// 文本色
+$color-text-primary: #1d2129;
+$color-text-secondary: #4e5969;
+$color-text-tertiary: #86909c;
+$color-text-disabled: #c9cdd4;
+$color-text-white: #ffffff;
+
+// 边框色
+$color-border: #e5e6eb;
+$color-divider: #f2f3f5;
+
+// 品牌渐变
+$gradient-primary: linear-gradient(135deg, #2f6bff 0%, #56a0ff 100%);
+$gradient-page: linear-gradient(180deg, #eef3ff 0%, #f4f6fa 100%);
+
+// 物流状态色
+$color-status-pending: #ff8a1f;
+$color-status-pending-bg: #fff3e6;
+$color-status-transit: #2f6bff;
+$color-status-transit-bg: #eaf1ff;
+$color-status-delivering: #00b87c;
+$color-status-delivering-bg: #e6f9f2;
+$color-status-signed: #86909c;
+$color-status-signed-bg: #f2f3f5;
+$color-status-exception: #f53f3f;
+$color-status-exception-bg: #ffecec;
+
+// 电商平台色（来源平台标识）
+$color-platform-pdd: #e22e1f;
+$color-platform-pdd-soft: #fdecea;
+$color-platform-taobao: #ff5000;
+$color-platform-taobao-soft: #fff1e8;
+$color-platform-jd: #e1251b;
+$color-platform-jd-soft: #ffefef;
+$color-platform-tmall: #ff0036;
+$color-platform-tmall-soft: #ffe9ee;
+$color-platform-other: #4e5969;
+$color-platform-other-soft: #f2f3f5;

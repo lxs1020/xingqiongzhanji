@@ -1,0 +1,69 @@
+@use '@/styles/variables.scss' as *;
+
+.wrap {
+  display: flex;
+  width: 100%;
+}
+
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.line {
+  flex: 1;
+  height: 4rpx;
+  border-radius: 4rpx;
+  background: $color-border;
+}
+
+.lineActive {
+  background: $color-primary-light;
+}
+
+.lineHidden {
+  background: transparent;
+}
+
+.dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: $radius-round;
+  box-sizing: border-box;
+  background: $color-bg-card;
+  border: 2rpx solid $color-text-disabled;
+  flex-shrink: 0;
+}
+
+.dotActive {
+  background: $color-primary;
+  border-color: $color-primary;
+}
+
+.dotCurrent {
+  width: 20rpx;
+  height: 20rpx;
+  box-shadow: 0 0 0 6rpx rgba(47, 107, 255, 0.14);
+}
+
+.stepLabel {
+  margin-top: 12rpx;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  @include text-ellipsis;
+  max-width: 100%;
+}
+
+.stepLabelActive {
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}

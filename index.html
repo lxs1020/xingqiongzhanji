@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>星穹战机 Nebula Striker</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="480" height="800"></canvas>
+
+  <!-- ================= 战斗 HUD（DOM 层） ================= -->
+  <div id="hud" class="hidden">
+    <div id="bossbar" class="hidden">
+      <div id="boss-name">SENTINEL</div>
+      <div class="boss-track"><div id="boss-fill"></div></div>
+    </div>
+    <div class="hud-row hud-top">
+      <div class="hud-left">
+        <div id="score">00000000</div>
+        <div id="stage-label">STAGE 1</div>
+      </div>
+      <div class="hud-right">
+        <div id="combo" class="hidden"></div>
+        <div id="coins-hud">⛁ 0</div>
+      </div>
+    </div>
+    <div class="hud-row hud-bars">
+      <div class="bar-block">
+        <span class="bar-label">HP</span>
+        <div class="bar"><div id="hp-fill" class="fill hp"></div></div>
+      </div>
+      <div id="shield-pips" class="pips"></div>
+      <div class="bar-block small">
+        <span class="bar-label">HYPER</span>
+        <div class="bar"><div id="hyper-fill" class="fill hyper"></div></div>
+      </div>
+    </div>
+    <div class="hud-row hud-bottom">
+      <div id="bombs-hud">💣 ×2</div>
+      <div id="skill-hud" class="skill-hud hidden"></div>
+      <div id="lives-hud"></div>
+    </div>
+    <div id="pause-btn">⏸</div>
+  </div>
+
+  <!-- Boss 警报 -->
+  <div id="warning" class="hidden">
+    <div class="warn-brackets">⚠</div>
+    <div class="warn-text">WARNING</div>
+    <div id="warn-sub" class="warn-sub"></div>
+  </div>
+
+  <!-- 居中大字提示 -->
+  <div id="toast" class="hidden"></div>
+
+  <!-- ================= 主菜单 ================= -->
+  <div id="screen-menu" class="screen">
+    <div class="title-glitch">
+      <h1 class="title">NEBULA<br>STRIKER</h1>
+      <div class="subtitle">星 穹 战 机</div>
+    </div>
+    <div class="menu-btns">
+      <button class="btn primary" data-action="go-levels">开始闯关</button>
+      <button class="btn" data-action="start-endless" data-world="1">无尽·金币风暴</button>
+      <button class="btn" data-action="start-endless" data-world="2">无尽·时之回廊</button>
+      <button class="btn" data-action="go-ships">战机库</button>
+      <button class="btn" data-action="go-upgrade">升级工坊</button>
+      <button class="btn" data-action="go-rank">排行榜</button>
+      <button class="btn" data-action="go-help">操作说明</button>
+      <button class="btn ghost" data-action="go-settings">设置</button>
+    </div>
+    <div id="high-score" class="high-score">HI-SCORE 00000000</div>
+  </div>
+
+  <!-- ================= 关卡选择 ================= -->
+  <div id="screen-levels" class="screen hidden">
+    <h2 class="panel-title">选 择 关 卡</h2>
+    <div id="level-list" class="level-list"></div>
+    <button class="btn ghost" data-action="go-menu">返回</button>
+  </div>
+
+  <!-- ================= 道具购买（每局携带一种） ================= -->
+  <div id="screen-shop" class="screen hidden">
+    <h2 class="panel-title">出 击 装 备</h2>
+    <div id="shop-coins" class="coin-big">⛁ 0</div>
+    <div class="shop-hint">每局只能携带一种道具，消耗不超过本局所得金币</div>
+    <div id="shop-list" class="shop-list"></div>
+    <div class="shop-actions">
+      <button class="btn" id="shop-clear">不带道具</button>
+      <button class="btn primary" id="shop-confirm">确认出击</button>
+    </div>
+  </div>
+
+  <!-- ================= 选机 ================= -->
+  <div id="screen-ships" class="screen hidden">
+    <h2 class="panel-title">选 择 战 机</h2>
+    <div id="ship-carousel" class="ship-carousel">
+      <button id="ship-prev" class="ship-arrow">‹</button>
+      <div class="ship-viewport">
+        <div id="ship-cards" class="ship-track"></div>
+      </div>
+      <button id="ship-next" class="ship-arrow">›</button>
+    </div>
+    <div id="ship-dots" class="ship-dots"></div>
+    <input id="ship-slider" type="range" min="0" max="4" step="1" value="0">
+    <button class="btn ghost" data-action="go-menu">返回</button>
+  </div>
+
+  <!-- ================= 升级 ================= -->
+  <div id="screen-upgrade" class="screen hidden">
+    <h2 class="panel-title">升 级 工 坊</h2>
+    <div id="upgrade-coins" class="coin-big">⛁ 0</div>
+    <div id="upgrade-list" class="upgrade-list"></div>
+    <button class="btn ghost" data-action="go-menu">返回</button>
+  </div>
+
+  <!-- ================= 排行榜 ================= -->
+  <div id="screen-rank" class="screen hidden">
+    <h2 class="panel-title">排 行 榜 TOP 10</h2>
+    <div id="rank-list" class="rank-list"></div>
+    <button class="btn ghost" data-action="go-menu">返回</button>
+  </div>
+
+  <!-- ================= 设置 ================= -->
+  <div id="screen-settings" class="screen hidden">
+    <h2 class="panel-title">设 置</h2>
+    <div class="setting-row">
+      <span>音乐音量</span>
+      <input id="set-music" type="range" min="0" max="100" value="50">
+    </div>
+    <div class="setting-row">
+      <span>音效音量</span>
+      <input id="set-sfx" type="range" min="0" max="100" value="70">
+    </div>
+    <div class="setting-row">
+      <span>低画质（省电）</span>
+      <input id="set-quality" type="checkbox">
+    </div>
+    <button class="btn" id="set-mute">静音：关</button>
+    <button class="btn ghost" data-action="go-menu">返回</button>
+  </div>
+
+  <!-- ================= 操作说明 ================= -->
+  <div id="screen-help" class="screen hidden">
+    <h2 class="panel-title">操 作 说 明</h2>
+    <div class="help-tabs">
+      <button class="help-tab active" data-tab="mouse">🖱 鼠标操作</button>
+      <button class="help-tab" data-tab="keyboard">⌨ 键盘操作</button>
+    </div>
+    <div class="help-content">
+      <div id="help-mouse" class="help-pane active">
+        <div class="help-row"><span class="help-key">鼠标拖动</span><span class="help-desc">控制战机移动（手指触屏拖动同理）</span></div>
+        <div class="help-row"><span class="help-key">按住左键</span><span class="help-desc">发射子弹（持续按住连发）</span></div>
+        <div class="help-row"><span class="help-key">鼠标移动 + Shift</span><span class="help-desc">低速精操模式（显示判定点，便于擦弹）</span></div>
+        <div class="help-row"><span class="help-key">双击屏幕</span><span class="help-desc">释放全屏炸弹（💣）</span></div>
+        <div class="help-tip">💡 推荐：按住左键拖动，移动与射击一气呵成</div>
+      </div>
+      <div id="help-keyboard" class="help-pane">
+        <div class="help-row"><span class="help-key">W A S D / ←↑↓→</span><span class="help-desc">控制战机上下左右移动</span></div>
+        <div class="help-row"><span class="help-key">Z / J</span><span class="help-desc">发射子弹（按住连发）</span></div>
+        <div class="help-row"><span class="help-key">Shift</span><span class="help-desc">低速精操模式（显示判定点，便于擦弹）</span></div>
+        <div class="help-row"><span class="help-key">空格</span><span class="help-desc">释放全屏炸弹（💣）</span></div>
+        <div class="help-row"><span class="help-key">ESC / P</span><span class="help-desc">暂停游戏</span></div>
+        <div class="help-tip">💡 推荐：左手方向键移动，右手 Z 键射击</div>
+      </div>
+    </div>
+    <button class="btn ghost" data-action="go-menu">返回</button>
+  </div>
+
+  <!-- ================= 暂停 ================= -->
+  <div id="screen-pause" class="screen dim hidden">
+    <h2 class="panel-title">PAUSED</h2>
+    <div class="menu-btns">
+      <button class="btn primary" data-action="resume">继续</button>
+      <button class="btn" data-action="restart">重新开始</button>
+      <button class="btn ghost" data-action="quit">回主菜单</button>
+    </div>
+  </div>
+
+  <!-- ================= 结算 ================= -->
+  <div id="screen-result" class="screen dim hidden">
+    <h2 id="result-title" class="result-title">MISSION COMPLETE</h2>
+    <div id="result-rank-grade" class="grade">S</div>
+    <div class="result-stats">
+      <div class="r-row"><span>总分</span><b id="r-score">0</b></div>
+      <div class="r-row"><span>击落</span><b id="r-kills">0</b></div>
+      <div class="r-row"><span>擦弹</span><b id="r-graze">0</b></div>
+      <div class="r-row"><span>最高连击</span><b id="r-combo">0</b></div>
+      <div class="r-row coin-line"><span>获得金币</span><b id="r-coins">+0</b></div>
+    </div>
+    <div id="new-record" class="new-record hidden">
+      ★ 新纪录！输入名字：
+      <input id="record-name" maxlength="3" value="AAA">
+      <button class="btn small" id="record-save">保存</button>
+    </div>
+    <div class="menu-btns">
+      <button class="btn primary" data-action="restart">再来一局</button>
+      <button class="btn ghost" data-action="quit">回主菜单</button>
+    </div>
+  </div>
+
+  <!-- ================= 新手引导 ================= -->
+  <div id="tutorial" class="screen dim hidden">
+    <div class="tut-box">
+      <h2>操 作 指 南</h2>
+      <p>⌨ 方向键 / WASD 移动，Shift 低速精操（显示判定点）</p>
+      <p>🖱 鼠标拖动 / 手机触屏拖动 控制战机</p>
+      <p>💣 空格 或 双击屏幕 = 全屏炸弹</p>
+      <p>🔥 按住鼠标左键 / Z 键 开火（拖动同时射击），擦弹积攒 HYPER</p>
+      <button class="btn primary" id="tut-ok">出 击</button>
+    </div>
+  </div>
+
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+</div>
+
+<!-- 脚本加载顺序：config → engine → game → ui → main -->
+<script src="js/config.js"></script>
+<script src="js/engine/util.js"></script>
+<script src="js/engine/pool.js"></script>
+<script src="js/engine/input.js"></script>
+<script src="js/engine/audio.js"></script>
+<script src="js/engine/loop.js"></script>
+<script src="js/game/particle.js"></script>
+<script src="js/game/bullet.js"></script>
+<script src="js/game/item.js"></script>
+<script src="js/game/player.js"></script>
+<script src="js/game/enemy.js"></script>
+<script src="js/game/boss.js"></script>
+<script src="js/game/level.js"></script>
+<script src="js/game/endless.js"></script>
+<script src="js/ui/hud.js"></script>
+<script src="js/ui/scenes.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

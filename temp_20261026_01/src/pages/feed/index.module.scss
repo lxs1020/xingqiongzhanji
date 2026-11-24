@@ -1,0 +1,184 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 160rpx;
+  background: $color-bg-page;
+}
+
+.header {
+  padding: 40rpx $page-padding 32rpx;
+  background: $gradient-primary;
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.headerTitle {
+  display: block;
+  font-size: 44rpx;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+  line-height: $line-height-tight;
+}
+
+.headerSub {
+  display: block;
+  margin-top: 12rpx;
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tabs {
+  margin-top: $spacing-md;
+  padding: 0 $page-padding;
+  white-space: nowrap;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60rpx;
+  padding: 0 32rpx;
+  margin-right: $spacing-sm;
+  border-radius: $radius-button;
+  background: $color-bg-card;
+  border: 2rpx solid transparent;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.tabActive {
+  background: $color-primary-soft;
+  border-color: rgba(47, 107, 255, 0.28);
+}
+
+.tabText {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  white-space: nowrap;
+}
+
+.tabTextActive {
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $page-padding 0;
+}
+
+.summaryMain {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.summarySub {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.list {
+  padding: $spacing-md $page-padding 0;
+}
+
+.item {
+  display: flex;
+  align-items: stretch;
+}
+
+.timeCol {
+  width: 92rpx;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeText {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-bottom: 12rpx;
+}
+
+.dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: $radius-round;
+  background: $color-border;
+  flex-shrink: 0;
+}
+
+.dotLatest {
+  width: 20rpx;
+  height: 20rpx;
+  background: $color-primary;
+  box-shadow: 0 0 0 6rpx rgba(47, 107, 255, 0.14);
+}
+
+.line {
+  flex: 1;
+  width: 2rpx;
+  background: $color-divider;
+  margin: 8rpx 0;
+  min-height: 40rpx;
+}
+
+.card {
+  flex: 1;
+  min-width: 0;
+  margin-left: $spacing-sm;
+  margin-bottom: $spacing-md;
+  padding: 24rpx;
+  background: $color-bg-card;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+  @include flex-center;
+}
+
+.badgeText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  margin: 0 $spacing-sm;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.desc {
+  display: block;
+  margin-top: 16rpx;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  @include text-ellipsis-multi(2);
+}

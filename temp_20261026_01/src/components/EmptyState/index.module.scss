@@ -1,0 +1,74 @@
+@use '@/styles/variables.scss' as *;
+
+.wrap {
+  padding: 96rpx 0 64rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  width: 140rpx;
+  height: 140rpx;
+  position: relative;
+  margin-bottom: $spacing-lg;
+}
+
+.boxTop {
+  position: absolute;
+  top: 0;
+  left: 20rpx;
+  width: 100rpx;
+  height: 46rpx;
+  border-radius: 16rpx 16rpx 4rpx 4rpx;
+  background: linear-gradient(135deg, rgba(47, 107, 255, 0.22) 0%, rgba(86, 160, 255, 0.12) 100%);
+  transform: skewX(-6deg);
+}
+
+.boxBody {
+  position: absolute;
+  bottom: 0;
+  left: 10rpx;
+  width: 120rpx;
+  height: 84rpx;
+  border-radius: 8rpx 8rpx 24rpx 24rpx;
+  background: linear-gradient(135deg, rgba(47, 107, 255, 0.14) 0%, rgba(86, 160, 255, 0.06) 100%);
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.desc {
+  margin-top: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  text-align: center;
+  line-height: $line-height-loose;
+  max-width: 520rpx;
+}
+
+.action {
+  margin-top: $spacing-xl;
+  height: $button-height-md;
+  min-width: 248rpx;
+  padding: 0 48rpx;
+  border-radius: $radius-button;
+  background: $gradient-primary;
+  @include flex-center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.actionText {
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-text-white;
+  white-space: nowrap;
+}

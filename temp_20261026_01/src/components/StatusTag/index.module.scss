@@ -1,0 +1,95 @@
+@use '@/styles/variables.scss' as *;
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 40rpx;
+  padding: 0 14rpx;
+  border-radius: $radius-xs;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: $radius-round;
+  margin-right: 8rpx;
+  background: currentColor;
+}
+
+.label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+}
+
+.large {
+  height: 48rpx;
+  padding: 0 20rpx;
+  border-radius: $radius-sm;
+
+  .label {
+    font-size: $font-size-sm;
+  }
+}
+
+.pending {
+  background: $color-status-pending-bg;
+
+  .label {
+    color: $color-status-pending;
+  }
+
+  .dot {
+    background: $color-status-pending;
+  }
+}
+
+.transit {
+  background: $color-status-transit-bg;
+
+  .label {
+    color: $color-status-transit;
+  }
+
+  .dot {
+    background: $color-status-transit;
+  }
+}
+
+.delivering {
+  background: $color-status-delivering-bg;
+
+  .label {
+    color: $color-status-delivering;
+  }
+
+  .dot {
+    background: $color-status-delivering;
+  }
+}
+
+.signed {
+  background: $color-status-signed-bg;
+
+  .label {
+    color: $color-status-signed;
+  }
+
+  .dot {
+    background: $color-status-signed;
+  }
+}
+
+.exception {
+  background: $color-status-exception-bg;
+
+  .label {
+    color: $color-status-exception;
+  }
+
+  .dot {
+    background: $color-status-exception;
+  }
+}

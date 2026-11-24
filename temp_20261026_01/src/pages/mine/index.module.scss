@@ -1,0 +1,213 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 160rpx;
+  background: $color-bg-page;
+}
+
+.header {
+  padding: 40rpx $page-padding 32rpx;
+  background: $gradient-primary;
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: $radius-round;
+  border: 4rpx solid rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.profileInfo {
+  flex: 1;
+  min-width: 0;
+  margin: 0 $spacing-md;
+}
+
+.name {
+  display: block;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+  @include text-ellipsis;
+}
+
+.phone {
+  display: block;
+  margin-top: 10rpx;
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.78);
+  @include text-ellipsis;
+}
+
+.bindBtn {
+  flex-shrink: 0;
+  height: 56rpx;
+  min-width: 112rpx;
+  padding: 0 24rpx;
+  border-radius: $radius-button;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2rpx solid rgba(255, 255, 255, 0.36);
+  @include flex-center;
+
+  &:active {
+    opacity: 0.86;
+  }
+}
+
+.bindText {
+  font-size: $font-size-xs;
+  color: $color-text-white;
+  white-space: nowrap;
+}
+
+.miniStats {
+  margin-top: $spacing-lg;
+  padding: 24rpx 0;
+  display: flex;
+  align-items: center;
+  border-radius: $radius-lg;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.miniItem {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.miniNum {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+}
+
+.miniLabel {
+  margin-top: 6rpx;
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.miniDivider {
+  width: 2rpx;
+  height: 40rpx;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.section {
+  padding: $spacing-lg $page-padding 0;
+}
+
+.sectionTitle {
+  display: block;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.card {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  padding: 0 $spacing-lg;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  min-height: 108rpx;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.stepRow {
+  display: flex;
+  align-items: flex-start;
+  padding: $spacing-md 0;
+}
+
+.stepIndex {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: $radius-round;
+  background: $color-primary-soft;
+  flex-shrink: 0;
+  margin-right: $spacing-md;
+  @include flex-center;
+}
+
+.stepIndexText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+}
+
+.rowMain {
+  flex: 1;
+  min-width: 0;
+  padding: $spacing-md 0;
+}
+
+.stepRow .rowMain {
+  padding: 0;
+}
+
+.rowTitle {
+  display: block;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.rowDesc {
+  display: block;
+  margin-top: 8rpx;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  line-height: $line-height-normal;
+}
+
+.rowValue {
+  flex-shrink: 0;
+  margin-left: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  white-space: nowrap;
+}
+
+.arrow {
+  flex-shrink: 0;
+  margin-left: 12rpx;
+  font-size: $font-size-lg;
+  color: $color-text-disabled;
+  line-height: 1;
+}
+
+.divider {
+  height: 2rpx;
+  background: $color-divider;
+}
+
+.version {
+  display: block;
+  padding: $spacing-xl 0 $spacing-lg;
+  text-align: center;
+}
+
+.versionText {
+  font-size: $font-size-xs;
+  color: $color-text-disabled;
+}

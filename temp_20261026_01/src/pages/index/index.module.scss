@@ -1,0 +1,187 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 200rpx;
+  background: $color-bg-page;
+}
+
+.header {
+  padding: 40rpx $page-padding 100rpx;
+  background: $gradient-primary;
+  border-radius: 0 0 40rpx 40rpx;
+}
+
+.headerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.headerLeft {
+  flex: 1;
+  min-width: 0;
+}
+
+.headerTitle {
+  display: block;
+  font-size: 44rpx;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+  line-height: $line-height-tight;
+}
+
+.headerSub {
+  display: block;
+  margin-top: 12rpx;
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.82);
+  @include text-ellipsis;
+}
+
+.syncBtn {
+  flex-shrink: 0;
+  height: 60rpx;
+  min-width: 132rpx;
+  padding: 0 32rpx;
+  margin-left: $spacing-md;
+  border-radius: $radius-button;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2rpx solid rgba(255, 255, 255, 0.36);
+  @include flex-center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.86;
+  }
+}
+
+.syncText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-white;
+  white-space: nowrap;
+}
+
+.syncHint {
+  display: block;
+  margin-top: 28rpx;
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stats {
+  position: relative;
+  z-index: 2;
+  margin: -64rpx $page-padding 0;
+  padding: 28rpx 0;
+  display: flex;
+  align-items: center;
+  background: $color-bg-card;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-float;
+}
+
+.statItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.statNum {
+  font-size: 40rpx;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  line-height: 1.2;
+}
+
+.statNumAccent {
+  color: $color-status-delivering;
+}
+
+.statLabel {
+  margin-top: 6rpx;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.statDivider {
+  width: 2rpx;
+  height: 48rpx;
+  background: $color-divider;
+}
+
+.filters {
+  margin-top: $spacing-md;
+  padding: 0 $page-padding;
+  white-space: nowrap;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60rpx;
+  padding: 0 28rpx;
+  margin-right: $spacing-sm;
+  border-radius: $radius-button;
+  background: $color-bg-card;
+  border: 2rpx solid transparent;
+  transition: all $transition-base;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:active {
+    opacity: 0.88;
+  }
+}
+
+.chipActive {
+  background: $color-primary-soft;
+  border-color: rgba(47, 107, 255, 0.28);
+}
+
+.chipText {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  white-space: nowrap;
+}
+
+.chipTextActive {
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+}
+
+.list {
+  padding: $spacing-md $page-padding 0;
+}
+
+.fab {
+  position: fixed;
+  right: $page-padding;
+  bottom: 160rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: $radius-round;
+  background: $gradient-primary;
+  box-shadow: 0 8rpx 24rpx rgba(47, 107, 255, 0.36);
+  @include flex-center;
+  z-index: 20;
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.94);
+    opacity: 0.92;
+  }
+}
+
+.fabText {
+  font-size: 56rpx;
+  font-weight: $font-weight-medium;
+  color: $color-text-white;
+  line-height: 1;
+}

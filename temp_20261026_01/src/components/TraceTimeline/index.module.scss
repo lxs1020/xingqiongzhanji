@@ -1,0 +1,83 @@
+@use '@/styles/variables.scss' as *;
+
+.timeline {
+  width: 100%;
+}
+
+.node {
+  display: flex;
+  align-items: stretch;
+}
+
+.axis {
+  width: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 10rpx;
+}
+
+.dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: $radius-round;
+  background: $color-border;
+  flex-shrink: 0;
+}
+
+.dotLatest {
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: -4rpx;
+  background: $color-primary;
+  box-shadow: 0 0 0 6rpx rgba(47, 107, 255, 0.14);
+}
+
+.line {
+  flex: 1;
+  width: 2rpx;
+  background: $color-divider;
+  margin: 8rpx 0;
+  min-height: 40rpx;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 0 0 32rpx $spacing-sm;
+}
+
+.time {
+  display: block;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-bottom: 8rpx;
+}
+
+.timeLatest {
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.desc {
+  display: block;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+}
+
+.descLatest {
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+.empty {
+  padding: 48rpx 0;
+  @include flex-center;
+}
+
+.emptyText {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
